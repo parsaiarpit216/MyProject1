@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "waj2geivkj");
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <link rel="icon" type="image/webp" href="logo.webp">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — ARPIT PARSAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --lime: #c8f000;
+      --white: #f5f5f0;
+      --gray: #1a1a1a;
+      --mid: #2a2a2a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom Cursor */
+    .cursor {
+      position: fixed;
+      width: 12px; height: 12px;
+      background: var(--lime);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, width 0.2s, height 0.2s;
+    }
+    .cursor-ring {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--lime);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s ease, width 0.2s, height 0.2s, opacity 0.2s;
+      opacity: 0.6;
+    }
+
+    /* SCROLL PROGRESS */
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      background: var(--lime);
+      z-index: 9999;
+      width: 0;
+      transition: width 0.1s;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 3rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,240,0,0.08);
+      animation: slideDown 0.7s ease forwards;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .nav-logo {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      color: var(--lime);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.25s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--lime);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--lime); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* HERO HEADER */
+    .page-hero {
+      min-height: 52vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 8rem 3rem 4rem;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(200,240,0,0.07);
+    }
+
+    .page-hero::before {
+      content: '✦';
+      font-family: 'Anton', sans-serif;
+      font-size: 40vw;
+      color: rgba(200,240,0,0.025);
+      position: absolute;
+      right: -6vw; top: -10vh;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--lime);
+      color: var(--black);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.9rem;
+      margin-bottom: 1.4rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .page-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(3rem, 8vw, 7.5rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+      color: var(--white);
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+
+    .page-title span { color: var(--lime); }
+
+    .page-subtitle {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: rgba(245,245,240,0.5);
+      max-width: 480px;
+      line-height: 1.7;
+      animation: fadeUp 0.8s 0.7s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* PROJECTS FEED */
+    .projects-feed {
+      padding: 6rem 3rem;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    /* Individual Project Item */
+    .project-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-bottom: 8rem;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .project-item:nth-child(even) {
+      direction: rtl;
+    }
+    .project-item:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    .project-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Image */
+    .image-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(200,240,0,0.08) 0%, transparent 60%);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .project-item:hover .image-container::before { opacity: 1; }
+
+    .image-container img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%) contrast(1.05);
+      transition: filter 0.5s, transform 0.6s;
+    }
+
+    .project-item:hover .image-container img {
+      filter: grayscale(0%) contrast(1.08);
+      transform: scale(1.03);
+    }
+
+    /* Image border accent */
+    .image-container::after {
+      content: '';
+      position: absolute;
+      top: -6px; left: -6px;
+      width: 60px; height: 60px;
+      border-top: 2px solid var(--lime);
+      border-left: 2px solid var(--lime);
+      z-index: 2;
+      transition: width 0.4s, height 0.4s;
+    }
+
+    .project-item:hover .image-container::after {
+      width: 90px; height: 90px;
+    }
+
+    /* Text Content */
+    .text-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .project-num {
+      font-family: 'Anton', sans-serif;
+      font-size: 5rem;
+      color: rgba(200,240,0,0.1);
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+
+    .category {
+      display: inline-block;
+      background: rgba(200,240,0,0.1);
+      color: var(--lime);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      margin-bottom: 1.4rem;
+    }
+
+    .description p {
+      font-size: 0.88rem;
+      color: rgba(245,245,240,0.55);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.2rem;
+      color: var(--lime);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: gap 0.25s;
+    }
+
+    .read-more:hover { gap: 0.9rem; }
+
+    .read-more::after {
+      content: '↗';
+      font-size: 1rem;
+    }
+
+    /* Divider line between projects */
+    .project-item + .project-item {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(200,240,0,0.07);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      padding: 4rem 3rem;
+      border-top: 1px solid rgba(200,240,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-family: 'Anton', sans-serif;
+      font-size: 2rem;
+      color: var(--lime);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(245,245,240,0.35);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .footer-socials a {
+      color: rgba(245,245,240,0.4);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer-socials a:hover { color: var(--lime); }
+
+    /* NOISE OVERLAY */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9990;
+      opacity: 0.4;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .page-hero { padding: 7rem 1.5rem 3rem; }
+      .projects-feed { padding: 4rem 1.5rem; }
+      .project-item, .project-item:nth-child(even) {
+        grid-template-columns: 1fr;
+        direction: ltr;
+        gap: 2.5rem;
+        margin-bottom: 5rem;
+      }
+      .image-container img { height: 280px; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">HelloWorld</a>
+  <ul class="nav-links">
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="index.html">Home</a></li>
+  </ul>
+</nav>
+
+<!-- HERO HEADER -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge">✦ &nbsp;My Work</div>
+    <h1 class="page-title">MAJOR &amp;<br><span>MINOR</span><br>PROJECTS</h1>
+    <p class="page-subtitle">Thoughtful designs, hardware experiments, and software builds — a collection of things I've made.</p>
+  </div>
+</section>
+
+<!-- PROJECTS FEED -->
+<div class="projects-feed" id="project-feed"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">AP</div>
+  <div class="footer-copy">© 2026 All Rights Reserved. MADE WITH LOVE &amp; CAFFEINE BY ARPIT</div>
+  <div class="footer-socials">
+    <a href="https://instagram.com/not_so_sophisticated_arpit" target="_blank">Instagram</a>
+    <a href="https://linkedin.com/in/arpitparsai1403" target="_blank">LinkedIn</a>
+    <a href="index.html#accordion">GitHub</a>
+    <a href="#">Twitter(X)</a>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  (function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  })();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px'; cursor.style.height = '20px';
+      ring.style.width = '52px'; ring.style.height = '52px'; ring.style.opacity = '0.9';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px'; cursor.style.height = '12px';
+      ring.style.width = '36px'; ring.style.height = '36px'; ring.style.opacity = '0.6';
+    });
+  });
+
+  // Scroll progress
+  const progressBar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    const total = document.body.scrollHeight - window.innerHeight;
+    progressBar.style.width = (window.scrollY / total * 100) + '%';
+  });
+
+  // Project data
+  const projectData = [
+    {
+      cat: "Arduino",
+      title: "Line Follower Robot using Arduino",
+      img: "Line-Follower.jpg",
+      p1: "A line follower robot or LFR is an autonomous guided robot designed to follow a path or line, typically a black line on white surface. These robots are used in industrial automation, warehouse logistics, and educational purposes.",
+      p2: "A line follower robot operates by detecting and following a black line on a surface. The principle is based on the differing light properties of black and white surfaces — black absorbs most light, white reflects nearly all of it. This difference is leveraged by IR sensors or specialized line sensors for superior accuracy and precision."
+    },
+    {
+      cat: "Embedded Systems",
+      title: "Ultrasonic RADAR",
+      img: "radar.jpg",
+      p1: "This Arduino-based project simulates a radar system using an ultrasonic sensor mounted on a servo motor. As the servo sweeps from 0° to 180° and back, the ultrasonic sensor measures distances at each angle. Detected objects (blips) are plotted in real-time on a 128×64 OLED display in a radar-style layout.",
+      p2: "Blips fade over time, mimicking a real radar scanner. This project is great for learning about sensors, servo control, graphics programming, and basic trigonometry on microcontrollers."
+    },
+    {
+      cat: "IoT / Automation",
+      title: "Automatic Watering System for My Plants",
+      img: "plant.jpeg",
+      p1: "Our system measures the soil moisture and waters automatically. A blue LED indicates when the bucket is empty. A BME280 sensor monitors temperature and humidity, displayed on an OLED screen. Currently designed for indoor use with a standard electrical outlet.",
+      p2: "When the soil moisture value falls below 300 (indicating dry soil), the water pump activates. A relay module (JQC-3FF-S-Z) regulates the pump, and a piezo speaker signals when watering is complete. Soil moisture is sampled every 60 seconds."
+    },
+    {
+      cat: "Interactive Hardware",
+      title: "PixelCraft Cube",
+      img: "cube.jpg",
+      p1: "The PixelCraft Cube is a fully custom interactive 3D NeoPixel display inspired by the aesthetic and interactivity of Minecraft. Built around a Raspberry Pi Pico 2 W and an Adafruit CircuitPlayground Bluefruit, the cube transforms real-world motion and digital input into dynamic voxel-style light animations.",
+      p2: "Components include a Raspberry Pi Pico 2 W, CircuitPlayground Bluefruit, I2C relay for PixelBlaze power, and clear acrylic panels. The result is a visual showpiece that bridges physical computing with Minecraft's creative spirit."
+    },
+    {
+      cat: "Clock",
+      title: "Word Clock with Ambient Light Sensor",
+      img: "clock.jpg",
+      p1: "The Word Clock is a USB-powered open-source digital clock that shows the time as English words, laid out in an 8×8 grid of individually illuminated letters. It tells the time to the nearest five minutes, descending from the iconic Biegert & Funk QLOCKTWO design.",
+      p2: "Based on a Raspberry Pi Pico W, the clock connects to the Internet over Wi-Fi to retrieve accurate time via NTP. The software is written in MicroPython, making it straightforward to customize and extend."
+    }
+  ];
+
+  const feed = document.getElementById('project-feed');
+
+  projectData.forEach((p, idx) => {
+    const item = document.createElement('div');
+    item.className = 'project-item';
+    item.innerHTML = `
+      <div class="image-container">
+        <img src="${p.img}" alt="${p.title}">
+      </div>
+      <div class="text-content">
+        <div class="project-num">0${idx + 1}</div>
+        <span class="category">${p.cat}</span>
+        <h2 class="project-title">${p.title}</h2>
+        <div class="description">
+          <p>${p.p1}</p>
+          <p>${p.p2}</p>
+        </div>
+        <a href="https://arpitparsai.vercel.app/#contact" class="read-more">Let's Connect</a>
+      </div>
+    `;
+    feed.appendChild(item);
+  });
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.project-item').forEach(i => obs.observe(i));
+</script>
+</body>
+</html>
