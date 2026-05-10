@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARPIT PARSAI — Maintenance</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --lime: #c8f000;
+    --white: #f5f5f0;
+    --gray: #1a1a1a;
+    --mid: #2a2a2a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: none;
+    position: relative;
+  }
+
+  /* Custom Cursor */
+  .cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--lime);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--lime);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: left 0.18s ease, top 0.18s ease, width 0.2s, height 0.2s, opacity 0.2s;
+    opacity: 0.6;
+  }
+
+  /* Background giant text */
+  .bg-text {
+    position: fixed;
+    font-family: 'Anton', sans-serif;
+    font-size: 38vw;
+    color: rgba(200,240,0,0.025);
+    pointer-events: none;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* Scan line overlay */
+  .scanlines {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 3px,
+      rgba(200,240,0,0.012) 3px,
+      rgba(200,240,0,0.012) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Corner decorations */
+  .corner {
+    position: fixed;
+    width: 60px; height: 60px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .corner--tl { top: 2rem; left: 2rem; border-top: 2px solid rgba(200,240,0,0.35); border-left: 2px solid rgba(200,240,0,0.35); }
+  .corner--tr { top: 2rem; right: 2rem; border-top: 2px solid rgba(200,240,0,0.35); border-right: 2px solid rgba(200,240,0,0.35); }
+  .corner--bl { bottom: 2rem; left: 2rem; border-bottom: 2px solid rgba(200,240,0,0.35); border-left: 2px solid rgba(200,240,0,0.35); }
+  .corner--br { bottom: 2rem; right: 2rem; border-bottom: 2px solid rgba(200,240,0,0.35); border-right: 2px solid rgba(200,240,0,0.35); }
+
+  /* Progress bar */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: var(--lime);
+    animation: progressPulse 3s ease-in-out infinite;
+    z-index: 100;
+    box-shadow: 0 0 14px var(--lime);
+  }
+
+  @keyframes progressPulse {
+    0% { width: 0%; opacity: 1; }
+    60% { width: 85%; opacity: 1; }
+    80% { width: 85%; opacity: 0.4; }
+    100% { width: 0%; opacity: 0; }
+  }
+
+  /* Main content */
+  .container {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 2rem;
+    animation: fadeUp 0.9s 0.2s ease both;
+    max-width: 700px;
+    width: 100%;
+  }
+
+  /* Badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--lime);
+    color: var(--black);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.45rem 1rem;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--black);
+    border-radius: 50%;
+    animation: blink 1.2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  /* Main heading */
+  .title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    animation: fadeUp 0.8s 0.55s ease both;
+  }
+
+  .title-top { color: var(--white); display: block; }
+  .title-accent { color: var(--lime); display: block; }
+
+  /* Divider */
+  .divider {
+    width: 80px;
+    height: 2px;
+    background: var(--lime);
+    margin: 2rem auto;
+    animation: fadeUp 0.8s 0.7s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .divider::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--white);
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* Sub text */
+  .subtitle {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: rgba(245,245,240,0.55);
+    max-width: 420px;
+    margin: 0 auto;
+    letter-spacing: 0.02em;
+    animation: fadeUp 0.8s 0.85s ease both;
+  }
+
+  .subtitle strong {
+    color: var(--lime);
+    font-weight: 500;
+  }
+
+  /* Status row */
+  .status-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 1s ease both;
+  }
+
+  .status-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .status-num {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.2rem;
+    color: var(--lime);
+    line-height: 1;
+  }
+
+  .status-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,245,240,0.4);
+  }
+
+  .status-sep {
+    width: 1px;
+    height: 40px;
+    background: rgba(200,240,0,0.2);
+  }
+
+  /* Logo */
+  .logo {
+    position: fixed;
+    top: 2rem; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Anton', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--lime);
+    z-index: 50;
+    text-decoration: none;
+    animation: slideDown 0.7s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+    to { transform: translateX(-50%) translateY(0); opacity: 1; }
+  }
+
+  /* Floating tags */
+  .float-tag {
+    position: fixed;
+    background: var(--black);
+    color: var(--lime);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(200,240,0,0.25);
+    pointer-events: none;
+    z-index: 5;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .float-tag--1 { top: 20%; left: 4%; animation-delay: 0s; }
+  .float-tag--2 { top: 30%; right: 4%; animation-delay: -2s; }
+  .float-tag--3 { bottom: 28%; left: 6%; animation-delay: -3.5s; }
+  .float-tag--4 { bottom: 20%; right: 5%; animation-delay: -1s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Ticker at bottom */
+  .ticker-wrap {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    overflow: hidden;
+    background: var(--lime);
+    padding: 0.55rem 0;
+    z-index: 50;
+  }
+
+  .ticker {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker 18s linear infinite;
+  }
+
+  .ticker-item {
+    font-family: 'Anton', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--black);
+    padding: 0 2.5rem;
+  }
+
+  .ticker-dot {
+    color: rgba(0,0,0,0.4);
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 600px) {
+    .float-tag { display: none; }
+    .title { font-size: clamp(3rem, 18vw, 5rem); }
+    .corner { width: 40px; height: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Background -->
+<div class="bg-text">AP</div>
+<div class="scanlines"></div>
+
+<!-- Corner decorations -->
+<div class="corner corner--tl"></div>
+<div class="corner corner--tr"></div>
+<div class="corner corner--bl"></div>
+<div class="corner corner--br"></div>
+
+<!-- Progress bar -->
+<div class="progress-bar"></div>
+
+<!-- Logo -->
+<div class="logo">ARPIT PARSAI</div>
+
+<!-- Floating tags -->
+<div class="float-tag float-tag--1">◈ Updating</div>
+<div class="float-tag float-tag--2">⬡ Backend</div>
+<div class="float-tag float-tag--3">◎ Tweaking UI</div>
+<div class="float-tag float-tag--4">✦ Almost There</div>
+
+<!-- Main content -->
+<div class="container">
+  <div class="badge">
+    <span class="badge-dot"></span>
+    Maintenance Mode
+  </div>
+
+  <h1 class="title">
+    <span class="title-top">Site Under</span>
+    <span class="title-accent">Maintenance</span>
+  </h1>
+
+  <div class="divider"></div>
+
+  <p class="subtitle">
+    I'm currently upgrading things behind the scenes.<br>
+    <strong>Arpit</strong> will be back shortly — better than ever.
+  </p>
+
+  <div class="status-row">
+    <div class="status-item">
+      <span class="status-num" id="progressNum">0</span>
+      <span class="status-label">% Complete</span>
+    </div>
+    <div class="status-sep"></div>
+    <div class="status-item">
+      <span class="status-num" id="countdown">--</span>
+      <span class="status-label">Est. Hours</span>
+    </div>
+    <div class="status-sep"></div>
+    <div class="status-item">
+      <span class="status-num">24/7</span>
+      <span class="status-label">Working On It</span>
+    </div>
+  </div>
+</div>
+
+<!-- Ticker -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item">Under Maintenance <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Arpit Is Building <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Coming Back Better <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Patience Is A Virtue <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Worth The Wait <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Under Maintenance <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Arpit Is Building <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Coming Back Better <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Patience Is A Virtue <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Worth The Wait <span class="ticker-dot">✦</span></span>
+  </div>
+</div>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  (function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  })();
+
+  // Animated progress counter
+  let target = 73;
+  let current = 0;
+  const numEl = document.getElementById('progressNum');
+  const interval = setInterval(() => {
+    if (current < target) {
+      current++;
+      numEl.textContent = current;
+    } else {
+      clearInterval(interval);
+    }
+  }, 28);
+
+  // Countdown hours (static display for aesthetics)
+  document.getElementById('countdown').textContent = '~4';
+</script>
+</body>
+</html>
