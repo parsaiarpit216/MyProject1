@@ -39,7 +39,7 @@
   /* Custom Cursor */
   .cursor {
     position: fixed;
-    width: 12px; height: 12px;
+    width: 6px; height: 6px;
     background: var(--lime);
     border-radius: 50%;
     pointer-events: none;
@@ -49,7 +49,7 @@
   }
   .cursor-ring {
     position: fixed;
-    width: 36px; height: 36px;
+    width: 18px; height: 18px;
     border: 1.5px solid var(--lime);
     border-radius: 50%;
     pointer-events: none;
@@ -1078,8 +1078,8 @@
 
   document.querySelectorAll('a, button, .accordion-header, .skill-card, .project-card').forEach(el => {
     el.addEventListener('mouseenter', () => {
-      cursor.style.width = '20px'; cursor.style.height = '20px';
-      ring.style.width = '52px'; ring.style.height = '52px'; ring.style.opacity = '0.9';
+      cursor.style.width = '10px'; cursor.style.height = '10px';
+      ring.style.width = '26px'; ring.style.height = '26px'; ring.style.opacity = '0.9';
     });
     el.addEventListener('mouseleave', () => {
       cursor.style.width = '12px'; cursor.style.height = '12px';
